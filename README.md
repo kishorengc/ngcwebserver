@@ -4,25 +4,23 @@
 
 # The webserver to be integrated with Flutter
 
-# Guides the user for their business use case on following options
+Guides the user for their business use case on following options
 
-# Category
-#    HPC
-#    AI
-#    ML
-#    Omniverse - sharing
+# Options
+Category
+HPC
+AI
+ML
+Omniverse - sharing
 
-# Learning Type
+Learning Type
 
-# Deployment Type
+Deployment Type
 
-# Model Type
+Model Type
 
-# Scale 
-
-# any other future options
-
-# will provide them with a list of NCAP IDs
-# NCAP - Nvidia Cloud AI Package ID
-
-# User can take this ID and deploy it on their favourite environment
+Scale 
+any other future options
+will provide them with a list of NCAP IDs
+NCAP - Nvidia Cloud AI Package ID
+User can take this ID and deploy it on their favourite environment
