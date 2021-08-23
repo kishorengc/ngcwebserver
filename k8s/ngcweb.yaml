@@ -1,0 +1,58 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ngcweb
+  namespace: default
+  labels:
+    app: ngcweb
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ngcweb
+  template:
+    metadata:
+      labels:
+        app: ngcweb
+    spec:
+      serviceAccount: default
+      containers:
+      - name: ngcweb
+        image: us-west1-docker.pkg.dev/blissful-hash-318902/bowl-repo/ngcweb:ngc-demo
+        imagePullPolicy: IfNotPresent
+        resources:
+          requests:
+            cpu: 250m
+            memory: 100Mi
+          limits:
+            cpu: 2000m
+        env:
+        - name: ROLE
+          value: "BOWL_SERVER"
+        - name: VERSION
+          value: "0.1"
+        - name: HOST_IP
+          valueFrom:
+             fieldRef:
+               fieldPath: status.hostIP
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ngcweb-svc
+  namespace: default
+  labels:
+    app: ngcweb
+spec:
+  selector:
+    app: ngcweb
+  ports:
+  - name: ngcweb-svc-advertised-port-1
+    port: 8080 
+    targetPort: 8080
+    nodePort: 32258
+  type: LoadBalancer
+---
